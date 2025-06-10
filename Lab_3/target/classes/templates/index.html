@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Виставлення оцінок студентам</title>
+</head>
+<body>
+<h1>Додати студента та предмет з оцінкою</h1>
+<form action="/" method="post">
+    <input type="text" name="studentName" placeholder="Ім'я студента" required>
+    <input type="text" name="subject" placeholder="Предмет" required>
+    <input type="number" name="score" placeholder="Оцінка" min="1" max="100" required>
+    <button type="submit">Додати</button>
+</form>
+
+<h2>Список студентів та їх оцінки</h2>
+<ul>
+    <li th:each="student : ${students}">
+        <strong th:text="${student.name}">Ім'я студента</strong>
+        <ul>
+            <li th:each="grade : ${student.grades}">
+                <span th:text="${grade.subject}">Предмет</span>: <span th:text="${grade.score}">Оцінка</span>
+            </li>
+        </ul>
+    </li>
+</ul>
+</body>
+</html>
